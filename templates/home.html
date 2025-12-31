@@ -1,10 +1,47 @@
 <!DOCTYPE html> 
-<html>  
-<head> 
-    <title>Finance Tracker</title>
+
+<html>
+<head>
+    <title>Finance Tracker</title> <!-- Page title shown in browser tab -->
+
+    <!-- Link to CSS file in the static folder (this pattern is always the same in Flask) -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
+
 <body>
+    <!-- Page heading -->
     <h1>Finance Tracker</h1>
     <p>Track your income and expenses easily.</p>
+
+    <!-- ========================= -->
+    <!-- Transaction Form Section -->
+    <!-- ========================= -->
+
+    <!-- 'form' tag: always used to collect user input -->
+    <!-- action="/add" → tells Flask to send data to the /add route -->
+    <!-- method="POST" → always used when sending data securely -->
+    <form action="/add" method="POST">
+
+        <!-- Input for amount -->
+        <!-- 'label' describes the field, 'input type="number"' ensures only numbers -->
+        <label for="amount">Amount:</label>
+        <input type="number" step="0.01" name="amount" required><br><br>
+
+        <!-- Input for type (income or expense) -->
+        <!-- 'select' creates a dropdown menu -->
+        <label for="type">Type:</label>
+        <select name="type" required>
+            <option value="income">Income</option>
+            <option value="expense">Expense</option>
+        </select><br><br>
+
+        <!-- Input for description -->
+        <!-- 'input type="text"' allows free text entry -->
+        <label for="description">Description:</label>
+        <input type="text" name="description"><br><br>
+
+        <!-- Submit button: always needed to send the form -->
+        <button type="submit">Add Transaction</button>
+    </form>
 </body>
 </html>
